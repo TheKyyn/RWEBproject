@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Cryptocurrency;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 

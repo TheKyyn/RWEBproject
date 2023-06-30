@@ -23,8 +23,20 @@
                         <td class="p-3">{{ $cryptocurrency->name }}</td>
                         <td class="p-3">${{ number_format($cryptocurrency->current_price, 2) }}</td>
                         <td class="p-3">${{ number_format($cryptocurrency->market_cap, 0) }}</td>
-                        <td class="p-3">{{ $cryptocurrency->price_change_percentage_24h }}%</td>
-                        <td class="p-3">{{ $cryptocurrency->price_change_percentage_7d_in_currency }}%</td>
+                        <td class="p-3">
+                            @if(property_exists($cryptocurrency, 'price_change_percentage_24h'))
+                                {{ $cryptocurrency->price_change_percentage_24h }}%
+                            @else
+                                N/A
+                            @endif
+                        </td>
+                        <td class="p-3">
+                            @if(property_exists($cryptocurrency, 'price_change_percentage_7d_in_currency'))
+                                {{ $cryptocurrency->price_change_percentage_7d_in_currency }}%
+                            @else
+                                N/A
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
