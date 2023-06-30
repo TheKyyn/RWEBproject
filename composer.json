@@ -1,6 +1,7 @@
 {
     "require": {
         "livewire/livewire": "^2.12",
-        "laravel-frontend-presets/tall": "^6.2"
+        "laravel-frontend-presets/tall": "^6.2",
+        "guzzlehttp/guzzle": "^7.7"
     }
 }
