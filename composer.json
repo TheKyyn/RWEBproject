@@ -1,0 +1,6 @@
+{
+    "require": {
+        "livewire/livewire": "^2.12",
+        "laravel-frontend-presets/tall": "^6.2"
+    }
+}
