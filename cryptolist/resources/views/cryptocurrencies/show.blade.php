@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto my-4 px-4 md:px-0 md:w-2/3 lg:w-1/2">
-        <h1 class="text-center text-2xl">{{ $cryptocurrency['name'] }} ({{ strtoupper($cryptocurrency['symbol']) }})</h1>
-        <div class="mt-4 flex flex-wrap -mx-2">
-            <div class="w-full sm:w-1/2 px-2 mb-4">
-                <img class="rounded mx-auto d-block" src="{{ $cryptocurrency['image'] }}" alt="{{ $cryptocurrency['name'] }}">
-            </div>
-            <div class="w-full sm:w-1/2 px-2">
+<div class="min-h-screen bg-gradient-to-br from-black to-indigo-900 py-6 flex flex-col justify-center sm:py-12">
+    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div class="absolute inset-0 bg-gradient-to-r from-indigo-800 to-indigo-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+        <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+            <h1 class="text-center text-2xl">{{ $cryptocurrency['name'] }} ({{ strtoupper($cryptocurrency['symbol']) }})</h1>
+            
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
+                <div>
+                    <img class="w-full rounded-lg" src="{{ $cryptocurrency['image'] }}" alt="{{ $cryptocurrency['name'] }}">
+                </div>
                 <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
                     <div class="px-4 py-5 sm:p-6">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -28,4 +31,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
