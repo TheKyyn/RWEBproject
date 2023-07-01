@@ -5,14 +5,18 @@
     <div class="relative py-3 sm:max-w-xl sm:mx-auto">
         <div class="absolute inset-0 bg-gradient-to-r from-indigo-800 to-indigo-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
         <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-            <h1 class="text-center text-2xl mb-4">Top 100 Cryptocurrencies</h1>
+            <h1 class="text-center text-2xl mb-4">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 to-indigo-500">Top 100 Cryptocurrencies</span>
+            </h1>
 
             <div class="overflow-auto">
                 <table class="w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 to-indigo-500">Name</span>
+                            </th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Market Cap</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">24h %</th>
@@ -25,21 +29,25 @@
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $loop->iteration }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <a href="{{ route('cryptocurrencies.show', $cryptocurrency->id) }}" class="text-indigo-600 hover:text-indigo-900">
-                                        {{ $cryptocurrency->name }}
+                                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 to-indigo-500">{{ $cryptocurrency->name }}</span>
                                     </a>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">${{ number_format($cryptocurrency->current_price, 2) }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">${{ number_format($cryptocurrency->market_cap, 0) }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     @if(property_exists($cryptocurrency, 'price_change_percentage_24h'))
-                                        {{ $cryptocurrency->price_change_percentage_24h }}%
+                                        <span class="{{ $cryptocurrency->price_change_percentage_24h >= 0 ? 'text-green-500' : 'text-red-500' }}">
+                                            {{ $cryptocurrency->price_change_percentage_24h }}%
+                                        </span>
                                     @else
                                         N/A
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     @if(property_exists($cryptocurrency, 'price_change_percentage_7d_in_currency'))
-                                        {{ $cryptocurrency->price_change_percentage_7d_in_currency }}%
+                                        <span class="{{ $cryptocurrency->price_change_percentage_7d_in_currency >= 0 ? 'text-green-500' : 'text-red-500' }}">
+                                            {{ $cryptocurrency->price_change_percentage_7d_in_currency }}%
+                                        </span>
                                     @else
                                         N/A
                                     @endif
