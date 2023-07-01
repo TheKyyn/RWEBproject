@@ -25,21 +25,26 @@
                             <p class="text-sm"><strong><span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 to-indigo-500">Total Volume:</span></strong> ${{ number_format($cryptocurrency['total_volume'], 0) }}</p>
                             <p class="text-sm"><strong><span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 to-indigo-500">24h Change:</span></strong> 
                                 <span class="{{ $cryptocurrency['price_change_percentage_24h'] >= 0 ? 'text-green-500' : 'text-red-500' }}">
-                                    {{ $cryptocurrency['price_change_percentage_24h'] }}%
+                                    {{ number_format($cryptocurrency['price_change_percentage_24h'], 2) }}%
                                 </span>
                             </p>
                             <p class="text-sm"><strong><span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 to-indigo-500">7d Change:</span></strong> 
-                                <span class="{{ $cryptocurrency['price_change_percentage_7d'] >= 0 ? 'text-green-500' : 'text-red-500' }}">
-                                    {{ $cryptocurrency['price_change_percentage_7d'] }}%
-                                </span>
+                                @if($cryptocurrency['price_change_percentage_7d'] !== null)
+                                    <span class="{{ $cryptocurrency['price_change_percentage_7d'] >= 0 ? 'text-green-500' : 'text-red-500' }}">
+                                        {{ number_format($cryptocurrency['price_change_percentage_7d'], 2) }}%
+                                    </span>
+                                @else
+                                    N/A
+                                @endif
                             </p>
-                            <p class="text-sm"><strong><span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 to-indigo-500">Market Cap Rank:</span></strong> #{{ $cryptocurrency['market_cap_rank'] }}</p>
-                            <p class="text-sm"><strong><span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 to-indigo-500">Homepage:</span></strong> 
-                                <a href="{{ $cryptocurrency['homepage'] }}" target="_blank" class="text-indigo-600 hover:text-indigo-900">{{ $cryptocurrency['homepage'] }}</a>
-                            </p>
-                            <p class="text-sm"><strong><span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 to-indigo-500">Community Link:</span></strong> 
-                                <a href="{{ $cryptocurrency['community_link'] }}" target="_blank" class="text-indigo-600 hover:text-indigo-900">{{ $cryptocurrency['community_link'] }}</a>
-                            </p>
+                            @if(array_key_exists('description', $cryptocurrency) && !empty($cryptocurrency['description']['en']))
+                                <div class="mt-4">
+                                    <h4 class="text-lg leading-6 font-medium text-gray-900 mb-2">
+                                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 to-indigo-500">Description</span>
+                                    </h4>
+                                    <p class="text-sm">{{ $cryptocurrency['description']['en'] }}</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
